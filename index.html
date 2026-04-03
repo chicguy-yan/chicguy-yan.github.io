@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>颜雍颀 | AI 产品主页</title>
+    <meta
+      name="description"
+      content="颜雍颀的 AI 产品个人主页，聚焦 AI Agent、科研工作流与教育产品设计，包含核心项目、能力栈与简历下载。"
+    />
+    <style>
+      :root {
+        --bg: #07111f;
+        --bg-soft: #0c1c31;
+        --panel: rgba(11, 28, 46, 0.74);
+        --panel-strong: rgba(12, 32, 53, 0.92);
+        --card: rgba(255, 255, 255, 0.06);
+        --card-strong: rgba(255, 255, 255, 0.1);
+        --line: rgba(255, 255, 255, 0.12);
+        --line-strong: rgba(255, 255, 255, 0.2);
+        --text: #eff7ff;
+        --muted: #98abc3;
+        --accent: #4ce0c6;
+        --accent-2: #ffb84d;
+        --accent-3: #6fd7ff;
+        --danger: #ff7c66;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+        --max-width: 1180px;
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(76, 224, 198, 0.18), transparent 28%),
+          radial-gradient(circle at 82% 12%, rgba(111, 215, 255, 0.2), transparent 22%),
+          radial-gradient(circle at 70% 72%, rgba(255, 184, 77, 0.14), transparent 26%),
+          linear-gradient(180deg, #050d18 0%, #08111f 28%, #07111f 100%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 88%);
+        opacity: 0.45;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .orb {
+        position: fixed;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        filter: blur(48px);
+        opacity: 0.2;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .orb--left {
+        top: 8vh;
+        left: -100px;
+        background: var(--accent);
+      }
+
+      .orb--right {
+        right: -120px;
+        top: 38vh;
+        background: var(--accent-2);
+      }
+
+      .container {
+        width: min(calc(100% - 40px), var(--max-width));
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(22px);
+        background: rgba(5, 13, 24, 0.58);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 76px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand__mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background:
+          linear-gradient(135deg, rgba(76, 224, 198, 0.32), rgba(111, 215, 255, 0.18)),
+          rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .brand__copy strong {
+        display: block;
+        font-size: 0.95rem;
+      }
+
+      .brand__copy span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-top: 2px;
+      }
+
+      .nav__links {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav__link {
+        color: var(--muted);
+        font-size: 0.92rem;
+        padding: 10px 14px;
+        border-radius: 999px;
+        transition: 180ms ease;
+      }
+
+      .nav__link:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 999px;
+        padding: 14px 20px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        font-size: 0.96rem;
+        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+        white-space: nowrap;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button--primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        color: #062131;
+        box-shadow: 0 16px 36px rgba(76, 224, 198, 0.24);
+      }
+
+      .button--ghost {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .button--secondary {
+        background: linear-gradient(135deg, rgba(255, 184, 77, 0.9), rgba(255, 150, 74, 0.94));
+        color: #231104;
+        box-shadow: 0 16px 36px rgba(255, 184, 77, 0.24);
+      }
+
+      .hero {
+        padding: 58px 0 34px;
+      }
+
+      .hero__grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .hero__main {
+        padding: 38px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero__main::before {
+        content: "";
+        position: absolute;
+        inset: auto -120px -120px auto;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(76, 224, 198, 0.22), transparent 66%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 0.82rem;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 0 14px currentColor;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.3rem, 5vw, 4.7rem);
+        line-height: 0.96;
+        margin-top: 18px;
+        letter-spacing: -0.04em;
+        max-width: 10ch;
+      }
+
+      .hero h1 span {
+        display: block;
+        color: var(--accent);
+      }
+
+      .hero__lead {
+        margin-top: 22px;
+        max-width: 62ch;
+        color: #d2deeb;
+        font-size: 1.02rem;
+        line-height: 1.8;
+      }
+
+      .hero__actions {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero__meta {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .metric {
+        padding: 16px 18px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.6;
+      }
+
+      .hero__side {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .spotlight {
+        padding: 28px;
+      }
+
+      .spotlight__title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+
+      .spotlight__title h2 {
+        font-size: 1.05rem;
+        letter-spacing: 0.01em;
+      }
+
+      .spotlight__badge {
+        font-size: 0.76rem;
+        color: #07222e;
+        background: var(--accent);
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-weight: 800;
+      }
+
+      .profile-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .profile-item {
+        display: grid;
+        grid-template-columns: 86px 1fr;
+        gap: 12px;
+        align-items: baseline;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      }
+
+      .profile-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .profile-item dt {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .profile-item dd {
+        margin: 0;
+        color: var(--text);
+        font-size: 0.94rem;
+        line-height: 1.6;
+      }
+
+      .mini-card {
+        padding: 24px;
+      }
+
+      .mini-card__label {
+        color: var(--accent-2);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .mini-card h3 {
+        margin-top: 10px;
+        font-size: 1.16rem;
+      }
+
+      .mini-card p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.75;
+        font-size: 0.94rem;
+      }
+
+      .section {
+        padding: 22px 0 24px;
+      }
+
+      .section__head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 22px;
+      }
+
+      .section__head h2 {
+        font-size: clamp(1.6rem, 3vw, 2.5rem);
+        letter-spacing: -0.03em;
+      }
+
+      .section__head p {
+        max-width: 58ch;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .capability-grid,
+      .project-grid,
+      .timeline,
+      .resume-grid,
+      .links-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .capability-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .capability {
+        padding: 24px;
+        min-height: 220px;
+      }
+
+      .capability__index {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--accent);
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+      }
+
+      .capability h3 {
+        font-size: 1.08rem;
+      }
+
+      .capability p {
+        color: var(--muted);
+        margin-top: 10px;
+        line-height: 1.75;
+        font-size: 0.95rem;
+      }
+
+      .chips {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 11px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #d7e3ef;
+        font-size: 0.8rem;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-height: 100%;
+      }
+
+      .project--featured {
+        background:
+          linear-gradient(180deg, rgba(76, 224, 198, 0.09), transparent 34%),
+          var(--panel-strong);
+      }
+
+      .project__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .project__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--accent);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .project__tag--warm {
+        color: var(--accent-2);
+      }
+
+      .project h3 {
+        font-size: 1.44rem;
+        line-height: 1.2;
+      }
+
+      .project__subtitle {
+        color: #dce9f3;
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .project__summary {
+        padding: 18px;
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .project__summary strong {
+        display: block;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        color: var(--accent-3);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .project__summary p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .project__facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .project__fact {
+        padding: 14px 15px;
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .project__fact span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .project__fact strong {
+        display: block;
+        margin-top: 7px;
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .project__list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .project__list div {
+        padding-left: 18px;
+        position: relative;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .project__list div::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      }
+
+      .project__actions {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .timeline {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: start;
+      }
+
+      .timeline__column {
+        display: grid;
+        gap: 18px;
+      }
+
+      .timeline-card {
+        padding: 24px;
+      }
+
+      .timeline-card__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .timeline-card__date {
+        color: var(--accent);
+        font-size: 0.84rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .timeline-card__role {
+        display: inline-flex;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #d7e3ef;
+        font-size: 0.79rem;
+      }
+
+      .timeline-card h3 {
+        margin-top: 14px;
+        font-size: 1.15rem;
+      }
+
+      .timeline-card__school {
+        margin-top: 8px;
+        color: #dce9f3;
+        font-size: 0.95rem;
+      }
+
+      .timeline-card__body {
+        margin-top: 14px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .timeline-card__body div {
+        padding-left: 18px;
+        position: relative;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .timeline-card__body div::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 184, 77, 0.9);
+        box-shadow: 0 0 0 4px rgba(255, 184, 77, 0.12);
+      }
+
+      .resume-grid {
+        grid-template-columns: 0.86fr 1.14fr;
+      }
+
+      .resume-card,
+      .resume-panel {
+        padding: 28px;
+      }
+
+      .resume-card h3,
+      .resume-panel h3 {
+        font-size: 1.24rem;
+      }
+
+      .resume-card p,
+      .resume-panel p {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .resume-actions {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .resume-panel {
+        display: grid;
+        gap: 18px;
+      }
+
+      .resume-row {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 12px;
+        align-items: start;
+        padding-bottom: 18px;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      }
+
+      .resume-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .resume-row strong {
+        color: #dce9f3;
+        font-size: 0.92rem;
+      }
+
+      .resume-row span {
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 0.94rem;
+      }
+
+      .footer {
+        padding: 40px 0 56px;
+      }
+
+      .footer__panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 22px 24px;
+      }
+
+      .footer__panel p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .links-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .link-card {
+        padding: 20px;
+      }
+
+      .link-card span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .link-card strong {
+        display: block;
+        margin-top: 9px;
+        font-size: 1rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1080px) {
+        .hero__grid,
+        .capability-grid,
+        .project-grid,
+        .timeline,
+        .resume-grid,
+        .links-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero__meta {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(calc(100% - 24px), var(--max-width));
+        }
+
+        .nav__inner,
+        .footer__panel,
+        .section__head {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .hero__main,
+        .spotlight,
+        .mini-card,
+        .capability,
+        .project,
+        .timeline-card,
+        .resume-card,
+        .resume-panel,
+        .link-card {
+          padding: 22px;
+        }
+
+        .profile-item,
+        .resume-row {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+
+        .project__facts {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="orb orb--left"></div>
+      <div class="orb orb--right"></div>
+
+      <nav class="nav">
+        <div class="container nav__inner">
+          <a class="brand" href="#top" aria-label="返回首页">
+            <div class="brand__mark">YY</div>
+            <div class="brand__copy">
+              <strong>颜雍颀</strong>
+              <span>AI 产品 / AI Agent / 教育与科研场景</span>
+            </div>
+          </a>
+          <div class="nav__links">
+            <a class="nav__link" href="#projects">核心项目</a>
+            <a class="nav__link" href="#strengths">能力栈</a>
+            <a class="nav__link" href="#timeline">经历</a>
+            <a class="nav__link" href="#resume">简历</a>
+            <a class="button button--ghost" href="https://github.com/chicguy-yan" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </nav>
+
+      <main id="top">
+        <section class="hero">
+          <div class="container hero__grid">
+            <article class="panel hero__main reveal">
+              <div class="eyebrow">正在寻找 AI 产品相关实习机会</div>
+              <h1>把复杂问题 <span>做成可运行的 AI 产品</span></h1>
+              <p class="hero__lead">
+                颜雍颀，清华大学环境科学与新能源技术硕士在读，关注 <strong>AI Agent、科研工作流、教育产品与创业生态中的 AI 工具化机会</strong>。
+                具备需求洞察、产品结构设计、服务流程梳理、Prompt 设计、Agent 工作流搭建、前端原型表达与资源协同经验。
+              </p>
+              <div class="hero__actions">
+                <a class="button button--primary" href="./颜雍颀的简历-0402.pdf" download>下载简历</a>
+                <a class="button button--ghost" href="#projects">查看核心项目</a>
+                <a class="button button--secondary" href="mailto:yyangjongjo0208@163.com">联系我</a>
+              </div>
+              <div class="hero__meta">
+                <div class="metric">
+                  <strong>2</strong>
+                  <span>核心项目分别覆盖 AI Agent 科研工作台 与 AI 教育产品原型</span>
+                </div>
+                <div class="metric">
+                  <strong>180 天</strong>
+                  <span>用产品视角重构长周期科研任务流与上下文管理问题</span>
+                </div>
+                <div class="metric">
+                  <strong>从 0 到 Demo</strong>
+                  <span>能独立完成需求抽象、界面设计、Agent 流程与前端原型表达</span>
+                </div>
+              </div>
+            </article>
+
+            <aside class="hero__side">
+              <section class="panel spotlight reveal">
+                <div class="spotlight__title">
+                  <h2>候选人快照</h2>
+                  <span class="spotlight__badge">AI PM Fit</span>
+                </div>
+                <dl class="profile-list">
+                  <div class="profile-item">
+                    <dt>当前身份</dt>
+                    <dd>清华大学环境科学与新能源技术硕士在读，2027年6月毕业</dd>
+                  </div>
+                  <div class="profile-item">
+                    <dt>求职方向</dt>
+                    <dd>AI 产品实习 / AI Native 产品 / Agent 产品 / 教育与科研工具</dd>
+                  </div>
+                  <div class="profile-item">
+                    <dt>能力组合</dt>
+                    <dd>需求洞察、产品框架、服务流程设计、Agent 工作流、Prompt、原型表达、资源协同、活动运营</dd>
+                  </div>
+                  <div class="profile-item">
+                    <dt>立即可用</dt>
+                    <dd>尽快到岗，可实习 6 个月以上</dd>
+                  </div>
+                </dl>
+              </section>
+
+              <section class="panel mini-card reveal">
+                <div class="mini-card__label">核心定位</div>
+                <h3>AI 产品方向复合型背景</h3>
+                <p>
+                  兼具科研训练、AI 工作流设计、前端原型表达、市场运营与创业生态资源链接经验，
+                  适配 AI Native 产品、Agent 产品与场景化工具方向。
+                </p>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="strengths">
+          <div class="container">
+            <div class="section__head reveal">
+              <div>
+                <h2>AI 产品相关能力</h2>
+              </div>
+              <p>
+                能力结构覆盖产品定义、AI 工作流理解、原型验证与市场协同，适合需要同时理解场景、能力边界与落地路径的 AI 产品岗位。
+              </p>
+            </div>
+
+            <div class="capability-grid">
+              <article class="panel capability reveal">
+                <div class="capability__index">01</div>
+                <h3>从痛点到产品结构</h3>
+                <p>
+                  可将模糊问题拆分为场景、用户、约束、核心路径与成功标准，形成可推进的产品框架与验证方向。
+                </p>
+                <div class="chips">
+                  <span class="chip">需求拆解</span>
+                  <span class="chip">PRD</span>
+                  <span class="chip">用户场景</span>
+                  <span class="chip">产品框架</span>
+                </div>
+              </article>
+
+              <article class="panel capability reveal">
+                <div class="capability__index">02</div>
+                <h3>懂 AI，不止会用</h3>
+                <p>
+                  熟悉 LLM、Prompt、RAG、Agent 工作流与工具调用逻辑，能判断能力边界，也知道什么时候该用工作流、什么时候该保留人工环节，避免“伪智能”设计。
+                </p>
+                <div class="chips">
+                  <span class="chip">Prompt Engineering</span>
+                  <span class="chip">LangChain</span>
+                  <span class="chip">LangGraph</span>
+                  <span class="chip">RAG</span>
+                </div>
+              </article>
+
+              <article class="panel capability reveal">
+                <div class="capability__index">03</div>
+                <h3>能快速做出原型验证</h3>
+                <p>
+                  可以用 Figma/Axure 做交互稿，也能直接用 React、TypeScript、FastAPI 或 AI 编程工具把想法做成可跑 demo，让讨论从抽象描述升级到可体验产品。
+                </p>
+                <div class="chips">
+                  <span class="chip">Figma</span>
+                  <span class="chip">Axure</span>
+                  <span class="chip">React</span>
+                  <span class="chip">FastAPI</span>
+                </div>
+              </article>
+
+              <article class="panel capability reveal">
+                <div class="capability__index">04</div>
+                <h3>兼具研究与市场理解</h3>
+                <p>
+                  具备科研训练与市场运营经历，能够处理长链条复杂信息、做桌面研究、梳理竞品与产业语境，并结合真实业务约束理解产品机会。
+                </p>
+                <div class="chips">
+                  <span class="chip">Desk Research</span>
+                  <span class="chip">竞品分析</span>
+                  <span class="chip">数据整理</span>
+                  <span class="chip">活动策划</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="container">
+            <div class="section__head reveal">
+              <div>
+                <h2>核心项目</h2>
+              </div>
+              <p>
+                两个项目分别对应科研工作流与教育产品场景，集中展示 AI 能力在不同用户问题中的产品化方式。
+              </p>
+            </div>
+
+            <div class="project-grid">
+              <article class="panel project project--featured reveal">
+                <div class="project__top">
+                  <div class="project__tag">Featured Case</div>
+                  <a class="button button--ghost" href="https://github.com/chicguy-yan/lab-research-claw" target="_blank" rel="noreferrer">查看仓库</a>
+                </div>
+                <div>
+                  <h3>Research OpenClaw</h3>
+                  <p class="project__subtitle">
+                    面向材料 / 化学 / 环境 / 生物等实验场景的透明 AI Agent 工作台，
+                    目标是把长周期科研任务流做成 <strong>可追溯、可验证、可回放</strong> 的产品系统。
+                  </p>
+                </div>
+                <div class="project__summary">
+                  <strong>项目摘要</strong>
+                  <p>
+                    这个项目不是简单套壳聊天，而是对真实科研场景做了结构性重构：
+                    用文件系统替代黑盒向量库，把“AI 记住了什么、为什么这么建议、证据链从哪里来”变成产品级可见能力。
+                  </p>
+                </div>
+                <div class="project__facts">
+                  <div class="project__fact">
+                    <span>产品问题</span>
+                    <strong>180 天实验周期里，上下文、证据与阶段成果容易断链</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>核心解法</span>
+                    <strong>三层 Markdown 记忆系统 + Context Orchestrator + Trace 回放</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>技术实现</span>
+                    <strong>FastAPI、LangChain、LangGraph、React、TypeScript、SSE</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>产品价值</span>
+                    <strong>把“科研助手”做成可审计工作台，而不是不可解释的黑盒问答</strong>
+                  </div>
+                </div>
+                <div class="project__list">
+                  <div>把科研场景拆解成 Identity / Timeline / Atom Notes 三层记忆结构，适配真实研究主线推进。</div>
+                  <div>设计显式上下文注入逻辑，解决长周期任务里“该带哪些信息进模型”的产品与工程问题。</div>
+                  <div>前端采用三栏 IDE 风格布局，把文件树、聊天流与 Trace 审计面板并置，强化可信感。</div>
+                  <div>支持多工作区、多会话、技能插件与 5 个核心工具，让系统具备进一步扩展成 AI 工作平台的骨架。</div>
+                </div>
+                <div class="chips">
+                  <span class="chip">AI Agent</span>
+                  <span class="chip">科研工作流</span>
+                  <span class="chip">可信 AI</span>
+                  <span class="chip">Context Engineering</span>
+                  <span class="chip">Demo 产品</span>
+                </div>
+              </article>
+
+              <article class="panel project reveal">
+                <div class="project__top">
+                  <div class="project__tag project__tag--warm">Education Product</div>
+                  <a class="button button--ghost" href="https://github.com/chicguy-yan/TAP" target="_blank" rel="noreferrer">查看仓库</a>
+                </div>
+                <div>
+                  <h3>TAP · 数学核心图式构建器</h3>
+                  <p class="project__subtitle">
+                    一个面向高考数学场景的 AI 教育产品原型，
+                    试图把“错题整理”升级为 <strong>Trigger / Action / Pitfall</strong> 的思维模型训练系统。
+                  </p>
+                </div>
+                <div class="project__summary">
+                  <strong>核心机制</strong>
+                  <p>
+                    传统错题本只记录题和答案，难以沉淀迁移能力。TAP 的产品核心是把一次错误提炼成可复用的思维图式，
+                    让学生不是单次纠错，而是逐步建立“看到条件就触发模型”的解题反应。
+                  </p>
+                </div>
+                <div class="project__facts">
+                  <div class="project__fact">
+                    <span>目标用户</span>
+                    <strong>需要提高标准化题型命中率与复盘效率的高中生</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>产品结构</span>
+                    <strong>拍题入口、分步脚手架、图式卡片、模型库、错题本</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>实现方式</span>
+                    <strong>React 19、TypeScript、Vite、组件化交互原型</strong>
+                  </div>
+                  <div class="project__fact">
+                    <span>核心亮点</span>
+                    <strong>把抽象“学习策略”翻译成可视化、可复盘、可持续积累的产品语言</strong>
+                  </div>
+                </div>
+                <div class="project__list">
+                  <div>围绕“80% 分数来自标准化高频模型”设计产品叙事，先建立用户认知，再进入交互流程。</div>
+                  <div>把一次题目分析拆成 Trigger、Action、Pitfall 三部分，强化可迁移的心智模型。</div>
+                  <div>通过图式模型库、错题状态与最近坑点列表，构建连续学习而非单次问答的体验。</div>
+                  <div>用前端原型形式验证教育 AI 的交互结构，为后续接入识题、多模态分析和个性化推荐留出空间。</div>
+                </div>
+                <div class="chips">
+                  <span class="chip">AI 教育</span>
+                  <span class="chip">学习产品</span>
+                  <span class="chip">心智模型</span>
+                  <span class="chip">前端原型</span>
+                  <span class="chip">TypeScript</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="timeline">
+          <div class="container">
+            <div class="section__head reveal">
+              <div>
+                <h2>教育与经历</h2>
+              </div>
+              <p>
+                教育背景提供研究与分析能力，项目与实习经历补充产品框架、市场协同与资源链接经验。
+              </p>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline__column">
+                <article class="panel timeline-card reveal">
+                  <div class="timeline-card__meta">
+                    <span class="timeline-card__date">2024.09 - 2027.06</span>
+                    <span class="timeline-card__role">硕士</span>
+                  </div>
+                  <h3>清华大学</h3>
+                  <p class="timeline-card__school">环境科学与新能源技术</p>
+                  <div class="timeline-card__body">
+                    <div>环境科学与新能源技术硕士在读，持续关注 AI 在科研、知识管理与生产力场景中的落地路径。</div>
+                    <div>英语能力较强，CET-4 596、CET-6 577，获全国大学生英语竞赛国家级特等奖。</div>
+                    <div>可独立撰写跨学科全英学术论文；运营 THU 清源智识公众号累计阅读量 3000+，线上微信社群 600+。</div>
+                  </div>
+                </article>
+
+                <article class="panel timeline-card reveal">
+                  <div class="timeline-card__meta">
+                    <span class="timeline-card__date">2020.07 - 2024.06</span>
+                    <span class="timeline-card__role">本科</span>
+                  </div>
+                  <h3>昆明理工大学</h3>
+                  <p class="timeline-card__school">环境工程</p>
+                  <div class="timeline-card__body">
+                    <div>环境工程本科，所属学科方向位于全国 ESI 排名前 1% 区间，具备扎实的工程与科研训练。</div>
+                    <div>以第一作者在 Journal of Environmental Sciences（SCI JCR Q1）发表相关论文一篇，形成了结构化研究、数据分析与证据组织的方法基础。</div>
+                    <div>本科阶段的工程训练让我更习惯从真实约束、执行链路和验证成本出发理解产品问题。</div>
+                </div>
+              </article>
+              </div>
+
+              <div class="timeline__column">
+                <article class="panel timeline-card reveal">
+                  <div class="timeline-card__meta">
+                    <span class="timeline-card__date">2025.02 - 2025.06</span>
+                    <span class="timeline-card__role">市场运营</span>
+                  </div>
+                  <h3>科创之光（深圳）科技有限公司</h3>
+                  <p class="timeline-card__school">创业生态、产品协同与资源链接</p>
+                  <div class="timeline-card__body">
+                    <div>协助梳理 Financial Assistant 产品的整体运转机制，从用户需求、服务流程到资源协同方式参与产品框架设计，支持产品从概念验证走向可执行的运营机制。</div>
+                    <div>协助发起并运营“东风露营”创业者茶摊活动，通过即兴邀约、主题茶座等轻量化形式，围绕 AI 硬件、AI 芯片、出海创业、跨境电商等议题组织数十场交流，持续沉淀创业者与产业交流场景。</div>
+                    <div>协助对接清华深圳国际研究生院两个内部项目与投资机构，参与整理项目材料、匹配机构风格与沟通节奏，积累对产业投资与风险投资机构偏好的理解，并拓展以清华 i-Space 创业中心为核心的产业-高校-投资人网络。</div>
+                    <div>策划并主持粤港澳大湾区创业交流会、水木清华中资基金行研分享会、未来科创家项目路演等线上线下活动十余场，累计触达受众 300+，支持创业生态内容传播与资源链接。</div>
+                  </div>
+                </article>
+
+                <article class="panel timeline-card reveal">
+                  <div class="timeline-card__meta">
+                    <span class="timeline-card__date">能力标签</span>
+                    <span class="timeline-card__role">高频工具</span>
+                  </div>
+                  <h3>AI 产品工作流工具箱</h3>
+                  <p class="timeline-card__school">面向实际产出，而不是只停留在概念层</p>
+                  <div class="timeline-card__body">
+                    <div>LLM 工具：ChatGPT、Gemini、Claude、Qwen、Kimi；能结合不同模型能力边界做任务分配。</div>
+                    <div>产品设计：Figma、Axure、Canva、Mermaid；能快速画信息结构、流程与界面表达。</div>
+                    <div>工程协同：GitHub、JSON/API 结构理解、Claude Code、Codex，能配合开发或直接做原型验证。</div>
+                    <div>知识管理：Obsidian、Notion、飞书，擅长把松散资料沉淀成可调用的产品和研究资产。</div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="resume">
+          <div class="container">
+            <div class="section__head reveal">
+              <div>
+                <h2>简历与联系</h2>
+              </div>
+              <p>
+                提供 PDF 简历下载、联系信息与岗位适配关键词。
+              </p>
+            </div>
+
+            <div class="resume-grid">
+              <article class="panel resume-card reveal">
+                <h3>简历摘要</h3>
+                <p>
+                  项目经历集中在 <strong>Agent 工作流</strong> 与 <strong>教育 / 科研场景</strong>，
+                  实习经历覆盖产品框架协同、活动运营与创业生态资源链接，适配 AI 产品、Agent 产品与场景化工具方向。
+                </p>
+                <div class="resume-actions">
+                  <a class="button button--primary" href="./颜雍颀的简历-0402.pdf" download>立即下载 PDF 简历</a>
+                  <a class="button button--ghost" href="mailto:yyangjongjo0208@163.com">发送邮件</a>
+                </div>
+              </article>
+
+              <aside class="panel resume-panel reveal">
+                <h3>快速信息</h3>
+                <div class="resume-row">
+                  <strong>邮箱</strong>
+                  <span><a href="mailto:yyangjongjo0208@163.com">yyangjongjo0208@163.com</a></span>
+                </div>
+                <div class="resume-row">
+                  <strong>电话</strong>
+                  <span><a href="tel:15151159606">15151159606</a></span>
+                </div>
+                <div class="resume-row">
+                  <strong>GitHub</strong>
+                  <span><a href="https://github.com/chicguy-yan" target="_blank" rel="noreferrer">github.com/chicguy-yan</a></span>
+                </div>
+                <div class="resume-row">
+                  <strong>适配岗位</strong>
+                  <span>AI 产品实习生、AI Native 产品经理、Agent 产品方向、教育 / 科研工具产品</span>
+                </div>
+                <div class="resume-row">
+                  <strong>优势关键词</strong>
+                  <span>AI Agent、Prompt、产品框架设计、服务流程、前端原型、科研工作流、教育场景、创业生态、资源链接、Desk Research</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <div class="section__head reveal">
+              <div>
+                <h2>重点链接</h2>
+              </div>
+              <p>项目仓库与 PDF 简历均可直接访问。</p>
+            </div>
+
+            <div class="links-grid">
+              <a class="panel link-card reveal" href="https://github.com/chicguy-yan/lab-research-claw" target="_blank" rel="noreferrer">
+                <span>AI Agent / 科研工作流</span>
+                <strong>Research OpenClaw</strong>
+              </a>
+              <a class="panel link-card reveal" href="https://github.com/chicguy-yan/TAP" target="_blank" rel="noreferrer">
+                <span>AI 教育 / 学习产品</span>
+                <strong>TAP 数学核心图式构建器</strong>
+              </a>
+              <a class="panel link-card reveal" href="./颜雍颀的简历-0402.pdf" download>
+                <span>PDF 下载</span>
+                <strong>颜雍颀的简历</strong>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="panel footer__panel reveal">
+            <p>
+              颜雍颀 · AI 产品方向个人主页。
+              页面包含核心项目、教育经历、市场运营经历与 PDF 简历下载入口。
+            </p>
+            <div class="resume-actions">
+              <a class="button button--ghost" href="#top">回到顶部</a>
+              <a class="button button--primary" href="./颜雍颀的简历-0402.pdf" download>下载简历</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    </script>
+  </body>
+</html>
