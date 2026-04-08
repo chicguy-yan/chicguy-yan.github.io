@@ -10,21 +10,21 @@
     />
     <style>
       :root {
-        --bg: #07111f;
-        --bg-soft: #0c1c31;
-        --panel: rgba(11, 28, 46, 0.74);
-        --panel-strong: rgba(12, 32, 53, 0.92);
-        --card: rgba(255, 255, 255, 0.06);
-        --card-strong: rgba(255, 255, 255, 0.1);
-        --line: rgba(255, 255, 255, 0.12);
-        --line-strong: rgba(255, 255, 255, 0.2);
-        --text: #eff7ff;
-        --muted: #98abc3;
-        --accent: #4ce0c6;
-        --accent-2: #ffb84d;
-        --accent-3: #6fd7ff;
-        --danger: #ff7c66;
-        --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+        --bg: #f3eee6;
+        --bg-soft: #e8e0d5;
+        --panel: rgba(255, 250, 244, 0.8);
+        --panel-strong: rgba(250, 244, 237, 0.94);
+        --card: rgba(255, 255, 255, 0.54);
+        --card-strong: rgba(255, 255, 255, 0.72);
+        --line: rgba(112, 118, 110, 0.12);
+        --line-strong: rgba(112, 118, 110, 0.2);
+        --text: #4f5753;
+        --muted: #7f8881;
+        --accent: #8fa39b;
+        --accent-2: #b89c87;
+        --accent-3: #aeb7ad;
+        --danger: #c58e7d;
+        --shadow: 0 24px 70px rgba(83, 75, 67, 0.12);
         --max-width: 1180px;
         --radius-xl: 32px;
         --radius-lg: 24px;
@@ -45,10 +45,10 @@
         font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Hiragino Sans GB",
           "Microsoft YaHei", sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(76, 224, 198, 0.18), transparent 28%),
-          radial-gradient(circle at 82% 12%, rgba(111, 215, 255, 0.2), transparent 22%),
-          radial-gradient(circle at 70% 72%, rgba(255, 184, 77, 0.14), transparent 26%),
-          linear-gradient(180deg, #050d18 0%, #08111f 28%, #07111f 100%);
+          radial-gradient(circle at top left, rgba(143, 163, 155, 0.2), transparent 30%),
+          radial-gradient(circle at 82% 12%, rgba(174, 183, 173, 0.18), transparent 24%),
+          radial-gradient(circle at 70% 72%, rgba(184, 156, 135, 0.16), transparent 28%),
+          linear-gradient(180deg, #f7f2ea 0%, #f3eee6 34%, #ebe3d8 100%);
         color: var(--text);
         min-height: 100vh;
       }
@@ -59,11 +59,11 @@
         inset: 0;
         pointer-events: none;
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+          linear-gradient(rgba(95, 104, 97, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(95, 104, 97, 0.05) 1px, transparent 1px);
         background-size: 40px 40px;
         mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 88%);
-        opacity: 0.45;
+        opacity: 0.35;
       }
 
       a {
@@ -116,8 +116,8 @@
         top: 0;
         z-index: 20;
         backdrop-filter: blur(22px);
-        background: rgba(5, 13, 24, 0.58);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(243, 238, 230, 0.82);
+        border-bottom: 1px solid var(--line);
       }
 
       .nav__inner {
@@ -141,9 +141,9 @@
         display: grid;
         place-items: center;
         background:
-          linear-gradient(135deg, rgba(76, 224, 198, 0.32), rgba(111, 215, 255, 0.18)),
-          rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+          linear-gradient(135deg, rgba(143, 163, 155, 0.3), rgba(184, 156, 135, 0.2)),
+          rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
         font-weight: 800;
         letter-spacing: 0.08em;
       }
@@ -178,7 +178,7 @@
 
       .nav__link:hover {
         color: var(--text);
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(143, 163, 155, 0.1);
       }
 
       .button {
@@ -201,20 +201,20 @@
 
       .button--primary {
         background: linear-gradient(135deg, var(--accent), var(--accent-3));
-        color: #062131;
-        box-shadow: 0 16px 36px rgba(76, 224, 198, 0.24);
+        color: #f8f5f1;
+        box-shadow: 0 16px 36px rgba(143, 163, 155, 0.18);
       }
 
       .button--ghost {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.5);
         color: var(--text);
-        border-color: rgba(255, 255, 255, 0.12);
+        border-color: var(--line-strong);
       }
 
       .button--secondary {
-        background: linear-gradient(135deg, rgba(255, 184, 77, 0.9), rgba(255, 150, 74, 0.94));
-        color: #231104;
-        box-shadow: 0 16px 36px rgba(255, 184, 77, 0.24);
+        background: linear-gradient(135deg, rgba(184, 156, 135, 0.94), rgba(199, 183, 163, 0.92));
+        color: #f8f5f1;
+        box-shadow: 0 16px 36px rgba(184, 156, 135, 0.16);
       }
 
       .hero {
@@ -249,7 +249,7 @@
         width: 300px;
         height: 300px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(76, 224, 198, 0.22), transparent 66%);
+        background: radial-gradient(circle, rgba(143, 163, 155, 0.16), transparent 66%);
       }
 
       .eyebrow {
@@ -258,8 +258,8 @@
         gap: 10px;
         padding: 8px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line-strong);
+        background: rgba(255, 255, 255, 0.52);
         font-size: 0.82rem;
         color: var(--accent);
         letter-spacing: 0.05em;
@@ -297,7 +297,7 @@
       .hero__lead {
         margin-top: 22px;
         max-width: 62ch;
-        color: #d2deeb;
+        color: #626964;
         font-size: 1.02rem;
         line-height: 1.8;
       }
@@ -319,8 +319,8 @@
       .metric {
         padding: 16px 18px;
         border-radius: var(--radius-md);
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
       }
 
       .metric strong {
@@ -362,7 +362,7 @@
 
       .spotlight__badge {
         font-size: 0.76rem;
-        color: #07222e;
+        color: #f8f5f1;
         background: var(--accent);
         padding: 7px 10px;
         border-radius: 999px;
@@ -380,7 +380,7 @@
         gap: 12px;
         align-items: baseline;
         padding-bottom: 12px;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        border-bottom: 1px dashed rgba(112, 118, 110, 0.16);
       }
 
       .profile-item:last-child {
@@ -470,7 +470,7 @@
         border-radius: 14px;
         display: grid;
         place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid var(--line-strong);
         color: var(--accent);
         font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
         font-size: 0.9rem;
@@ -501,9 +501,9 @@
         gap: 6px;
         padding: 8px 11px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #d7e3ef;
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
+        color: #5f6661;
         font-size: 0.8rem;
       }
 
@@ -521,7 +521,7 @@
 
       .project--featured {
         background:
-          linear-gradient(180deg, rgba(76, 224, 198, 0.09), transparent 34%),
+          linear-gradient(180deg, rgba(143, 163, 155, 0.12), transparent 34%),
           var(--panel-strong);
       }
 
@@ -538,9 +538,9 @@
         gap: 8px;
         padding: 8px 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.56);
         color: var(--accent);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--line);
         font-size: 0.78rem;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -556,7 +556,7 @@
       }
 
       .project__subtitle {
-        color: #dce9f3;
+        color: #555d58;
         font-size: 1rem;
         line-height: 1.8;
       }
@@ -564,15 +564,15 @@
       .project__summary {
         padding: 18px;
         border-radius: var(--radius-md);
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid var(--line);
       }
 
       .project__summary strong {
         display: block;
         font-size: 0.82rem;
         letter-spacing: 0.08em;
-        color: var(--accent-3);
+        color: var(--accent);
         text-transform: uppercase;
         margin-bottom: 10px;
       }
@@ -591,8 +591,8 @@
       .project__fact {
         padding: 14px 15px;
         border-radius: var(--radius-sm);
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid var(--line);
       }
 
       .project__fact span {
@@ -628,7 +628,7 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--accent), var(--accent-3));
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
       }
 
       .project__actions {
@@ -671,9 +671,9 @@
         display: inline-flex;
         padding: 7px 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #d7e3ef;
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
+        color: #5f6661;
         font-size: 0.79rem;
       }
 
@@ -684,7 +684,7 @@
 
       .timeline-card__school {
         margin-top: 8px;
-        color: #dce9f3;
+        color: #555d58;
         font-size: 0.95rem;
       }
 
@@ -709,8 +709,8 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: rgba(255, 184, 77, 0.9);
-        box-shadow: 0 0 0 4px rgba(255, 184, 77, 0.12);
+        background: rgba(184, 156, 135, 0.92);
+        box-shadow: 0 0 0 4px rgba(184, 156, 135, 0.12);
       }
 
       .resume-grid {
@@ -752,7 +752,7 @@
         gap: 12px;
         align-items: start;
         padding-bottom: 18px;
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        border-bottom: 1px dashed rgba(112, 118, 110, 0.16);
       }
 
       .resume-row:last-child {
@@ -761,7 +761,7 @@
       }
 
       .resume-row strong {
-        color: #dce9f3;
+        color: #555d58;
         font-size: 0.92rem;
       }
 
@@ -910,7 +910,6 @@
               <div class="hero__actions">
                 <a class="button button--primary" href="./颜雍颀的简历-0402.pdf" download>下载简历</a>
                 <a class="button button--ghost" href="#projects">查看核心项目</a>
-                <a class="button button--secondary" href="mailto:yyangjongjo0208@163.com">联系我</a>
               </div>
               <div class="hero__meta">
                 <div class="metric">
@@ -1253,7 +1252,6 @@
                 </p>
                 <div class="resume-actions">
                   <a class="button button--primary" href="./颜雍颀的简历-0402.pdf" download>立即下载 PDF 简历</a>
-                  <a class="button button--ghost" href="mailto:yyangjongjo0208@163.com">发送邮件</a>
                 </div>
               </article>
 
